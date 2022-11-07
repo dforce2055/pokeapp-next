@@ -25,7 +25,7 @@ const Footer: FC<Props> = ({ author }) => {
           >
             Powered by {author}
             <span className="flex justify-center my-2 px-2">
-              <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+              <Image src="/img/vercel.svg" alt="Vercel Logo" width={72} height={16} />
             </span>
           </a>
         </div>

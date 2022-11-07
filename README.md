@@ -1,3 +1,18 @@
+# pokemon-app-dforce2055
+# NextJS SSR + React + Typescript + Tailwind CSS
+### Simple Pokemon App NextJS SSR + React + Typescript + Tailwind CSS + Vercel
+
+**DEMO:** <a href="#" target="_blank">#</a>
+
+<div align="center">
+  <img 
+    src="./public/img/banner.jpg"
+    alt="Simple Pokemon App"
+    width="350px"
+    style="max-width:350px;"
+  />
+</div>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

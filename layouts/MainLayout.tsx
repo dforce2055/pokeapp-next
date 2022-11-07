@@ -33,7 +33,7 @@ const MainLayout: FC<Props> = ({ title, pokemon, children }) => {
     <>
       <Head>
         <title>{ fullTitle }</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/pokemon-logo.png" />
         <meta name="author" content="Diego Pérez" />
         <meta name="dev" content="dforce2055 dperez2055@gmail.com" />
         <meta name="description"  content={ description } />

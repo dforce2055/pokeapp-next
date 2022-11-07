@@ -10,7 +10,7 @@ const Logo = () => {
         </span>
         <Image
           className="inline-flex pb-2 -ml-8"
-          src="/pokemon-logo.svg"
+          src="/img/pokemon-logo.svg"
           alt="Pokemon App"
           width={ 30 }
           height={ 30 }
