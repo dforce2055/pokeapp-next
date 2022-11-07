@@ -6,10 +6,10 @@
 
 <div align="center">
   <img 
-    src="./public/img/banner.jpg"
+    src="./public/img/demo.png"
     alt="Simple Pokemon App"
-    width="350px"
-    style="max-width:350px;"
+    width="550px"
+    style="max-width:550px;"
   />
 </div>
 
