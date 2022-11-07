@@ -2,7 +2,7 @@
 # NextJS SSR + React + Typescript + Tailwind CSS
 ### Simple Pokemon App NextJS SSR + React + Typescript + Tailwind CSS + Vercel
 
-**DEMO:** <a href="#" target="_blank">#</a>
+**DEMO:** <a href="https://pokemon-dforce2055.vercel.app/" target="_blank">https://pokemon-dforce2055.vercel.app/</a>
 
 <div align="center">
   <img 
