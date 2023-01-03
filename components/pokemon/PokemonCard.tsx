@@ -30,13 +30,15 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
     <div className="card-body">
         <h2 className="card-title capitalize"># { pokemon.id } - { pokemon.name }</h2>
       {/* <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p> */}
-      <div className="card-actions justify-end">
-          <button
-            onClick={onClick}
-            className="btn btn-outline btn-sm hover:bg-sky-400 "
-          >
-            More info
-          </button>
+        <div className="card-actions justify-end">
+          <div className="rounded-md bg-gradient-to-r p-[2px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]">
+            <button
+              onClick={onClick}
+              className="btn btn-sm hover:bg-transparent hover:border-none hover:text-gray-100 "
+            >
+              More info
+            </button>
+          </div>
       </div>
     </div>
   </div>

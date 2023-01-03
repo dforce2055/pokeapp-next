@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import { pokemonApi } from '../../api'
 import Image from "next/image"
 import MainLayout from '../../layouts/MainLayout'
-import { PokemonListAPI, POKEMON_LIMIT, PokemonDetailsAPI } from '../../types'
+import { POKEMON_LIMIT, PokemonDetailsAPI } from '../../types'
 import confetti from 'canvas-confetti'
 
 import { toggleFavorites, isFavorite, getPokemonDetails } from '../../utils'
@@ -65,14 +64,16 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
               <div className="flex justify-between mb-3 items-center">
                 <span className="card-title capitalize lg:text-4xl text-xl">#{id} - {pokemon.name}</span>
                 <div className="card-actions">
-                  <button className="btn btn-sm btn-outline hover:bg-sky-400">
-                    <span
-                      className=""
-                      onClick={onToggleFavorites}
-                    >
-                      {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
-                    </span>
-                  </button>
+                  <div className="rounded-md bg-gradient-to-r p-[2px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]">
+                  <button className="btn btn-sm hover:bg-transparent hover:border-none hover:text-gray-100">
+                      <span
+                        className=""
+                        onClick={onToggleFavorites}
+                      >
+                        {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 items-center text-center">
@@ -130,7 +131,7 @@ export const getStaticPaths: GetStaticPaths  = () => {
   })
   return {
     paths: [ ...pokemons],
-    fallback: false, // can also be true or 'blocking' on false, show errors on get id undefined on paths
+    fallback: 'blocking', // can also be true or 'blocking' on false, show errors on get id undefined on paths
   }
 }
 
@@ -140,12 +141,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { id } = params as { id: string }
 
     const pokemon = await getPokemonDetails(id)
+    if (!pokemon)
+      return {
+        redirect: {
+          destination: `/?error=true&id=${ id }`, // sino existe data en el servidor, redirige al home
+          permanent: false
+        }
+      }
   
     return {
       // Passed to the page component as props
       props: {
         pokemon
       },
+      revalidate: 86400 // 60 sec * 60 min * 24 hs
     }
   } catch (error) {
     return {

@@ -65,14 +65,16 @@ const PokemonByNamePage: NextPage<Props> = ({ pokemon }) => {
               <div className="flex justify-between mb-3 items-center">
                 <span className="card-title capitalize lg:text-4xl text-xl">#{pokemon.id} - {pokemon.name}</span>
                 <div className="card-actions">
-                  <button className="btn btn-sm btn-outline hover:bg-sky-400">
-                    <span
-                      className=""
-                      onClick={onToggleFavorites}
-                    >
-                      {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
-                    </span>
-                  </button>
+                  <div className="rounded-md bg-gradient-to-r p-[2px] from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]">
+                    <button className="btn btn-sm hover:bg-transparent hover:border-none hover:text-gray-100">
+                      <span
+                        className=""
+                        onClick={onToggleFavorites}
+                      >
+                        {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 items-center text-center">
@@ -132,7 +134,7 @@ export const getStaticPaths: GetStaticPaths= async () => {
   })
   return {
     paths: [ ...pokemons],
-    fallback: false, // can also be true or 'blocking' on false, show errors on get id undefined on paths
+    fallback: 'blocking', // can also be true or 'blocking' on false, show errors on get id undefined on paths
   }
 }
 
@@ -142,12 +144,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { name } = params as { name: string }
 
     const pokemon = await getPokemonDetails(name)
+    if (!pokemon)
+      return {
+        redirect: {
+          destination: `/?error=true&name=${ name }`, // sino existe data en el servidor, redirige al home
+          permanent: false
+        }
+      }
   
     return {
       // Passed to the page component as props
       props: {
         pokemon,
       },
+      revalidate: 86400 // 60 sec * 60 min * 24 hs
     }
   } catch (error) {
     return {
